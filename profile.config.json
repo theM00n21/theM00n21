@@ -1,0 +1,54 @@
+{
+  "display_name": "Viktor Reznov",
+  "handle": "theM00n21",
+  "eyebrow": "SOFTWARE ENGINEER",
+  "headline": "Fullstack development · Reverse engineering · Game systems",
+  "avatar": "github",
+  "banner": "assets/banner.jpg",
+  "stack": [
+    {
+      "title": "LANGUAGES",
+      "items": [
+        "Python",
+        "C#",
+        "Java",
+        "Lua"
+      ]
+    },
+    {
+      "title": "INFRASTRUCTURE",
+      "items": [
+        "Docker",
+        "Linux",
+        "Git",
+        "Batch / PowerShell"
+      ]
+    },
+    {
+      "title": "REVERSE ENGINEERING",
+      "items": [
+        "Ghidra",
+        "IDA Pro",
+        "JVM internals",
+        "NTFS"
+      ]
+    },
+    {
+      "title": "CURRENTLY LEARNING",
+      "items": [
+        "C++",
+        "Godot (.NET)"
+      ]
+    }
+  ],
+  "languages": {
+    "count": 8,
+    "include_forks": false,
+    "exclude": [
+      "Makefile",
+      "Dockerfile"
+    ],
+    "public_only": false
+  },
+  "role": "Software Engineer · Fullstack"
+}
