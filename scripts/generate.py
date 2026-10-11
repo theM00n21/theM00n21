@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import argparse
 import base64
+import hashlib
 import random
 import re
 import datetime as dt
@@ -600,24 +601,25 @@ def render_stack(cfg: dict) -> str:
 
 # ------------------------------------------------------------------------ README
 
-def render_readme(cfg: dict, s: dict) -> str:
+def render_readme(cfg: dict, s: dict, v: dict[str, str] | None = None) -> str:
+    v = v or {}
     login = s["login"]
     ts = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d")
     return f"""<p align="center">
-  <img src="./assets/header.svg" width="100%" alt="{E(cfg['display_name'])} — {E(cfg.get('eyebrow', '').title())}"/>
+  <img src="./assets/header.svg?v={v.get('header', '0')}" width="100%" alt="{E(cfg['display_name'])} — {E(cfg.get('eyebrow', '').title())}"/>
 </p>
 
 <p align="center">
-  <img src="./assets/terminal.svg" width="100%" alt="Profile summary"/>
+  <img src="./assets/terminal.svg?v={v.get('terminal', '0')}" width="100%" alt="Profile summary"/>
 </p>
 
 <p align="center">
-  <img src="./assets/languages.svg" width="49%" alt="Languages across all repositories"/>
-  <img src="./assets/activity.svg" width="49%" alt="Contribution activity"/>
+  <img src="./assets/languages.svg?v={v.get('languages', '0')}" width="49%" alt="Languages across all repositories"/>
+  <img src="./assets/activity.svg?v={v.get('activity', '0')}" width="49%" alt="Contribution activity"/>
 </p>
 
 <p align="center">
-  <img src="./assets/stack.svg" width="100%" alt="Tech stack"/>
+  <img src="./assets/stack.svg?v={v.get('stack', '0')}" width="100%" alt="Tech stack"/>
 </p>
 
 <sub>Cards are generated from live GitHub data by <a href="./scripts/generate.py">scripts/generate.py</a> · last refresh {ts}</sub>
@@ -655,8 +657,10 @@ def main() -> None:
         ASSETS / "languages.svg": render_languages(s),
         ASSETS / "activity.svg": render_activity(s),
         ASSETS / "stack.svg": render_stack(cfg),
-        ROOT / "README.md": render_readme(cfg, s),
     }
+    # Content hash in each image URL busts GitHub's image cache on every change.
+    versions = {p.stem: hashlib.sha1(t.encode()).hexdigest()[:10] for p, t in outputs.items()}
+    outputs[ROOT / "README.md"] = render_readme(cfg, s, versions)
 
     # Leak guard: refuse to publish if any private repository's name or
     # description shows up in any generated file. Nothing is written on failure.
