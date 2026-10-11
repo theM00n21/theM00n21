@@ -604,7 +604,6 @@ def render_stack(cfg: dict) -> str:
 def render_readme(cfg: dict, s: dict, v: dict[str, str] | None = None) -> str:
     v = v or {}
     login = s["login"]
-    ts = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d")
     return f"""<p align="center">
   <img src="./assets/header.svg?v={v.get('header', '0')}" width="100%" alt="{E(cfg['display_name'])} — {E(cfg.get('eyebrow', '').title())}"/>
 </p>
@@ -622,7 +621,6 @@ def render_readme(cfg: dict, s: dict, v: dict[str, str] | None = None) -> str:
   <img src="./assets/stack.svg?v={v.get('stack', '0')}" width="100%" alt="Tech stack"/>
 </p>
 
-<sub>Cards are generated from live GitHub data by <a href="./scripts/generate.py">scripts/generate.py</a> · last refresh {ts}</sub>
 """
 
 
