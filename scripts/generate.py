@@ -22,6 +22,7 @@ from __future__ import annotations
 import argparse
 import base64
 import random
+import re
 import datetime as dt
 import html
 import json
@@ -95,7 +96,9 @@ def gql(token: str, cursor: str | None, login: str | None) -> dict:
     with urllib.request.urlopen(req, timeout=60) as r:
         payload = json.load(r)
     if payload.get("errors"):
-        sys.exit(f"GraphQL error: {payload['errors']}")
+        # Action logs are public: report only the error type, never payload details.
+        kinds = sorted({e.get("type", "ERROR") for e in payload["errors"]})
+        sys.exit(f"GraphQL request failed: {', '.join(kinds)}")
     return payload["data"]["user" if login else "viewer"]
 
 
@@ -297,7 +300,7 @@ def render_header(cfg: dict, s: dict, av: str | None, bn: str | None = None) -> 
 
     stats = [
         (fmt(s["contrib_year"]), "contributions"),
-        (fmt(s["repo_total"]), "repositories"),
+        (fmt(s["commits_year"]), "commits"),
         (str(s["lang_count"]), "languages"),
         (f'{s["streak"]}d', "streak"),
     ]
@@ -426,7 +429,7 @@ def render_terminal(cfg: dict, s: dict) -> str:
         ("role", cfg.get("role", "Software Engineer")),
         ("stats --year", f'{s["contrib_year"]:,} contributions · {s["commits_year"]:,} commits · {s["active_days"]} active days'),
         ("langs --top 3", top or "—"),
-        ("repos --summary", f'{s["repo_total"]} repositories · {s["repo_public"]} public · on GitHub since {s["since"]}'),
+        ("streak", f'current {s["streak"]}d · best {s["best_streak"]}d'),
     ]
     lh, y0 = 56, 92
     H = y0 + len(lines) * lh + 40
@@ -645,18 +648,37 @@ def main() -> None:
             Path(args.save).write_text(json.dumps(raw), encoding="utf-8")
 
     s = aggregate(raw, cfg)
+
+    outputs = {
+        ASSETS / "header.svg": render_header(cfg, s, resolve_avatar(cfg, raw, offline=bool(args.data)), banner_uri(cfg)),
+        ASSETS / "terminal.svg": render_terminal(cfg, s),
+        ASSETS / "languages.svg": render_languages(s),
+        ASSETS / "activity.svg": render_activity(s),
+        ASSETS / "stack.svg": render_stack(cfg),
+        ROOT / "README.md": render_readme(cfg, s),
+    }
+
+    # Leak guard: refuse to publish if any private repository's name or
+    # description shows up in any generated file. Nothing is written on failure.
+    secrets = set()
+    for r in raw["repositories"]["nodes"]:
+        if r["isPrivate"]:
+            secrets.add(r["name"].lower())
+            if r.get("description"):
+                secrets.add(r["description"].strip().lower())
+    secrets = {x for x in secrets if len(x) >= 3}
+    for path, text in outputs.items():
+        low = re.sub(r"data:[a-z/+-]+;base64,[A-Za-z0-9+/=]+", "", text).lower()
+        for x in secrets:
+            if x in low:
+                sys.exit(f"leak guard: private repository data found in {path.name}; nothing was published")
+
     ASSETS.mkdir(exist_ok=True)
     for old in ASSETS.glob("project-*.svg"):  # cleanup from older versions
         old.unlink()
-    (ASSETS / "header.svg").write_text(render_header(cfg, s, resolve_avatar(cfg, raw, offline=bool(args.data)), banner_uri(cfg)), encoding="utf-8")
-    (ASSETS / "terminal.svg").write_text(render_terminal(cfg, s), encoding="utf-8")
-    (ASSETS / "languages.svg").write_text(render_languages(s), encoding="utf-8")
-    (ASSETS / "activity.svg").write_text(render_activity(s), encoding="utf-8")
-    (ASSETS / "stack.svg").write_text(render_stack(cfg), encoding="utf-8")
-    (ROOT / "README.md").write_text(render_readme(cfg, s), encoding="utf-8")
-    print(f"rendered: {len(s['languages'])} languages, "
-          f"{s['repo_total']} repos ({s['repo_private']} private, names withheld)")
-
+    for path, text in outputs.items():
+        path.write_text(text, encoding="utf-8")
+    print("profile cards rendered")
 
 if __name__ == "__main__":
     main()

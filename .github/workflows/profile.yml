@@ -11,8 +11,8 @@ on:
       - "scripts/**"
       - ".github/workflows/profile.yml"
 
-permissions:
-  contents: write
+# Nothing is granted at the workflow level; the job asks only for what it needs.
+permissions: {}
 
 concurrency:
   group: profile
@@ -20,19 +20,25 @@ concurrency:
 
 jobs:
   render:
-    runs-on: ubuntu-latest
+    # Never run on forks or for anyone else's copy of this repo.
+    if: github.repository == 'theM00n21/theM00n21'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write   # only to commit the regenerated cards
     steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
+      # Pinned to a full commit SHA (v4.4.0) so a moved tag can't inject code.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          python-version: "3.12"
+          persist-credentials: true
+          fetch-depth: 1
 
+      # Uses the runner's built-in Python 3; no third-party actions involved.
       - name: Render cards from live GitHub data
         env:
           PROFILE_TOKEN: ${{ secrets.PROFILE_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/generate.py
+        run: python3 scripts/generate.py
 
       - name: Commit if changed
         run: |
