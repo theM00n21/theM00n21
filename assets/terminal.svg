@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="412" viewBox="0 0 1200 412"><style>
+:root{--bg:#0a0a0c;--card:#0e0f12;--fg:#e6e8ee;--dim:#7d8596;--faint:#2a3142;--line:#1c2230;--acc:#ff3b47;--acc2:#b48cff;
+      --c0:#17191f;--c1:#3d1418;--c2:#7d1b23;--c3:#c9303a;--c4:#ff5a62}
+@media (prefers-color-scheme:light){:root{--bg:#ffffff;--card:#ffffff;--fg:#0f1218;--dim:#5b6372;--faint:#d5d9e0;--line:#e3e6ec;--acc:#c8102e;--acc2:#e5383b;
+      --c0:#f1f2f4;--c1:#fbd3d6;--c2:#f2979e;--c3:#de4450;--c4:#a50f1c}}
+.mono{font-family:ui-monospace,'SFMono-Regular','JetBrains Mono','Cascadia Code',Menlo,Consolas,monospace}
+.sans{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Helvetica,Arial,sans-serif}
+.eyebrow{fill:var(--dim);font-size:12px;letter-spacing:2.6px}
+.rise{opacity:0;animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards}
+.fade{opacity:0;animation:fade .8s ease forwards}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:1}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+@keyframes sweep{from{transform:translateX(-420px)}to{transform:translateX(1240px)}}
+@keyframes drift{to{transform:translate(-80px,30px)}}
+@keyframes blink{50%{opacity:0}}
+@keyframes run{to{stroke-dashoffset:-2000}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;opacity:1!important;transform:none!important}}
+
+    .cmd{fill:var(--fg);font-size:15px}
+    .pr{fill:#3ddc97}
+    .out{fill:var(--dim);font-size:15px}
+    .ttl{fill:var(--dim);font-size:12px}
+    .cur{animation:blink 1s steps(1) infinite}
+    </style><defs><linearGradient id="bd" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#ff3b47"/><stop offset="1" stop-color="#ff8f8f"/></linearGradient></defs><rect x=".5" y=".5" width="1199" height="411" rx="14" fill="var(--card)" stroke="var(--line)"/><rect x=".5" y=".5" width="1199" height="411" rx="14" fill="none" stroke="url(#bd)" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="387 2837" opacity=".85"><animate attributeName="stroke-dashoffset" from="0" to="-3224" dur="9s" repeatCount="indefinite"/></rect><circle cx="34" cy="34" r="6" fill="#ff5f57"/><circle cx="54" cy="34" r="6" fill="#febc2e"/><circle cx="74" cy="34" r="6" fill="#28c840"/><text class="mono ttl" x="600" y="38" text-anchor="middle">theM00n21@github: ~</text><rect x="1" y="58" width="1198" height="1" fill="var(--line)"/><clipPath id="tc0"><rect x="40" y="74" width="0" height="26"><animate attributeName="width" from="0" to="78" begin="0.50s" dur="0.36s" fill="freeze"/></rect></clipPath><text class="mono cmd" x="40" y="92" clip-path="url(#tc0)"><tspan class="pr">$</tspan> whoami</text><text class="mono out" x="40" y="116" opacity="0">Viktor Reznov (@theM00n21)<animate attributeName="opacity" from="0" to="1" begin="1.01s" dur=".35s" fill="freeze"/></text><clipPath id="tc1"><rect x="40" y="130" width="0" height="26"><animate attributeName="width" from="0" to="60" begin="1.41s" dur="0.27s" fill="freeze"/></rect></clipPath><text class="mono cmd" x="40" y="148" clip-path="url(#tc1)"><tspan class="pr">$</tspan> role</text><text class="mono out" x="40" y="172" opacity="0">Software Engineer · Fullstack<animate attributeName="opacity" from="0" to="1" begin="1.83s" dur=".35s" fill="freeze"/></text><clipPath id="tc2"><rect x="40" y="186" width="0" height="26"><animate attributeName="width" from="0" to="132" begin="2.23s" dur="0.63s" fill="freeze"/></rect></clipPath><text class="mono cmd" x="40" y="204" clip-path="url(#tc2)"><tspan class="pr">$</tspan> stats --year</text><text class="mono out" x="40" y="228" opacity="0">2,518 contributions · 1,254 commits · 55 active days<animate attributeName="opacity" from="0" to="1" begin="3.01s" dur=".35s" fill="freeze"/></text><clipPath id="tc3"><rect x="40" y="242" width="0" height="26"><animate attributeName="width" from="0" to="141" begin="3.41s" dur="0.67s" fill="freeze"/></rect></clipPath><text class="mono cmd" x="40" y="260" clip-path="url(#tc3)"><tspan class="pr">$</tspan> langs --top 3</text><text class="mono out" x="40" y="284" opacity="0">GSC 48%, JavaScript 27%, Python 24%<animate attributeName="opacity" from="0" to="1" begin="4.24s" dur=".35s" fill="freeze"/></text><clipPath id="tc4"><rect x="40" y="298" width="0" height="26"><animate attributeName="width" from="0" to="159" begin="4.64s" dur="0.77s" fill="freeze"/></rect></clipPath><text class="mono cmd" x="40" y="316" clip-path="url(#tc4)"><tspan class="pr">$</tspan> repos --summary</text><text class="mono out" x="40" y="340" opacity="0">2 repositories · 2 public · on GitHub since 2024<animate attributeName="opacity" from="0" to="1" begin="5.55s" dur=".35s" fill="freeze"/></text><g opacity="0"><animate attributeName="opacity" from="0" to="1" begin="5.95s" dur=".2s" fill="freeze"/><text class="mono cmd" x="40" y="372"><tspan class="pr">$</tspan></text><rect class="cur" x="58" y="358" width="9" height="18" fill="#ff8f8f"/></g></svg>
