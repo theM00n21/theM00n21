@@ -1,14 +1,14 @@
 <p align="center">
-  <img src="./assets/header.svg?v=aee6b74e98" width="100%" alt="Viktor Reznov — Software Engineer"/>
+  <img src="./assets/header.svg?v=ce18cea9f6" width="100%" alt="Viktor Reznov — Software Engineer"/>
 </p>
 
 <p align="center">
-  <img src="./assets/terminal.svg?v=0f148377b5" width="100%" alt="Profile summary"/>
+  <img src="./assets/terminal.svg?v=cfacaaff28" width="100%" alt="Profile summary"/>
 </p>
 
 <p align="center">
-  <img src="./assets/languages.svg?v=f75b6247a4" width="49%" alt="Languages across all repositories"/>
-  <img src="./assets/activity.svg?v=ccbb560241" width="49%" alt="Contribution activity"/>
+  <img src="./assets/languages.svg?v=a37ce3d2dd" width="49%" alt="Languages across all repositories"/>
+  <img src="./assets/activity.svg?v=579e83d50d" width="49%" alt="Contribution activity"/>
 </p>
 
 <p align="center">
