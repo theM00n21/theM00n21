@@ -324,8 +324,6 @@ def render_header(cfg: dict, s: dict, av: str | None, bn: str | None = None) -> 
           <image href="{bn}" x="{bx}" y="0" width="{bw}" height="{H}" preserveAspectRatio="xMidYMid slice"/>
           <image class="glitch" href="{bn}" x="{bx}" y="0" width="{bw}" height="{H}" preserveAspectRatio="xMidYMid slice" filter="url(#red)"/>
         </g>
-        <rect x="{bx}" y="0" width="{bw}" height="{H}" fill="url(#scan)" opacity=".35"/>
-        <rect class="beam" x="{bx}" y="0" width="{bw}" height="40" fill="url(#beam)"/>
       </g>"""
     if av:
         avatar = f"""
@@ -351,17 +349,14 @@ def render_header(cfg: dict, s: dict, av: str | None, bn: str | None = None) -> 
     :root{--bg:#0a0a0c;--fg:#f2f2f4;--dim:#8d919b;--line:#24262d;--faint:#3a3d46;--acc:#ff4d57}
     .kb{animation:kb 16s ease-in-out infinite alternate}
     .glitch{opacity:0;mix-blend-mode:screen;animation:glitch 7s steps(1) infinite}
-    .beam{animation:beam 5.5s linear infinite}
     @keyframes kb{to{transform:scale(1.07)}}
     @keyframes glitch{0%,91%,100%{opacity:0;transform:none}92%{opacity:.55;transform:translateX(7px)}94%{opacity:.4;transform:translateX(-5px)}96%{opacity:.5;transform:translateX(3px)}}
-    @keyframes beam{from{transform:translateY(-40px)}to{transform:translateY(380px)}}
     .name{font-size:64px;font-weight:750;letter-spacing:-2.2px}
     .handle{fill:var(--acc);font-size:15px}
     .role{fill:var(--dim);font-size:16px}
     .sv{fill:var(--fg);font-size:26px;font-weight:650;letter-spacing:-.5px}
     .sl{fill:var(--dim);font-size:10.5px;letter-spacing:1.8px}
     .cur{fill:#ff8f8f;animation:blink 1.05s steps(1) infinite}
-    .grid{stroke:var(--line)}
     .orb{animation:drift 18s ease-in-out infinite alternate}
     .sweep{animation:sweep 7s cubic-bezier(.65,0,.35,1) infinite}
     .ring{animation:spin 9s linear infinite}
@@ -380,7 +375,6 @@ def render_header(cfg: dict, s: dict, av: str | None, bn: str | None = None) -> 
     """
     body = f"""
     <defs>
-      <pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse"><path class="grid" d="M40 0H0V40" fill="none"/></pattern>
       <linearGradient id="f" x1="0" x2="1"><stop offset=".4" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#fff"/></linearGradient>
       <mask id="m"><rect width="{W}" height="{H}" fill="url(#f)"/></mask>
       <radialGradient id="o"><stop offset="0" stop-color="#ff3b47" stop-opacity=".22"/><stop offset="1" stop-color="#ff3b47" stop-opacity="0"/></radialGradient>
@@ -399,13 +393,10 @@ def render_header(cfg: dict, s: dict, av: str | None, bn: str | None = None) -> 
       <clipPath id="c"><rect width="{W}" height="{H}" rx="14"/></clipPath>
       <linearGradient id="bf" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".45" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#fff"/></linearGradient>
       <mask id="bm"><rect x="{bx}" y="0" width="{bw}" height="{H}" fill="url(#bf)"/></mask>
-      <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="1.4" fill="#000"/></pattern>
-      <linearGradient id="beam" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ff3b47" stop-opacity="0"/><stop offset="1" stop-color="#ff3b47" stop-opacity=".18"/></linearGradient>
       <filter id="red"><feColorMatrix type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"/></filter>
     </defs>
     <g clip-path="url(#c)">
       <rect width="{W}" height="{H}" fill="var(--bg)"/>
-      <rect width="{W}" height="{H}" fill="url(#g)" mask="url(#m)"/>
       {banner}
       <circle class="orb" cx="900" cy="330" r="200" fill="url(#o)" style="animation-duration:21s"/>
       <circle class="orb" cx="170" cy="170" r="260" fill="url(#o2)" style="animation-duration:29s;opacity:.6"/>
@@ -603,22 +594,23 @@ def render_stack(cfg: dict) -> str:
 
 def render_readme(cfg: dict, s: dict, v: dict[str, str] | None = None) -> str:
     v = v or {}
+    RAW = f"https://raw.githubusercontent.com/{s['login']}/{s['login']}/main/assets"
     login = s["login"]
     return f"""<p align="center">
-  <img src="./assets/header.svg?v={v.get('header', '0')}" width="100%" alt="{E(cfg['display_name'])} — {E(cfg.get('eyebrow', '').title())}"/>
+  <img src="{RAW}/header.svg?v={v.get('header', '0')}" width="100%" alt="{E(cfg['display_name'])} — {E(cfg.get('eyebrow', '').title())}"/>
 </p>
 
 <p align="center">
-  <img src="./assets/terminal.svg?v={v.get('terminal', '0')}" width="100%" alt="Profile summary"/>
+  <img src="{RAW}/terminal.svg?v={v.get('terminal', '0')}" width="100%" alt="Profile summary"/>
 </p>
 
 <p align="center">
-  <img src="./assets/languages.svg?v={v.get('languages', '0')}" width="49%" alt="Languages across all repositories"/>
-  <img src="./assets/activity.svg?v={v.get('activity', '0')}" width="49%" alt="Contribution activity"/>
+  <img src="{RAW}/languages.svg?v={v.get('languages', '0')}" width="49%" alt="Languages across all repositories"/>
+  <img src="{RAW}/activity.svg?v={v.get('activity', '0')}" width="49%" alt="Contribution activity"/>
 </p>
 
 <p align="center">
-  <img src="./assets/stack.svg?v={v.get('stack', '0')}" width="100%" alt="Tech stack"/>
+  <img src="{RAW}/stack.svg?v={v.get('stack', '0')}" width="100%" alt="Tech stack"/>
 </p>
 
 """
