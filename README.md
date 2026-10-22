@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/theM00n21/theM00n21/main/assets/header.svg?v=1eabab3d96" width="100%" alt="Viktor Reznov — Software Engineer"/>
+  <img src="https://raw.githubusercontent.com/theM00n21/theM00n21/main/assets/header.svg?v=bfe71c20e7" width="100%" alt="Viktor Reznov — Software Engineer"/>
 </p>
 
 <p align="center">
