@@ -1,17 +1,17 @@
 <p align="center">
-  <img src="./assets/header.svg?v=84ed9ec1c7" width="100%" alt="Viktor Reznov — Software Engineer"/>
+  <img src="https://raw.githubusercontent.com/theM00n21/theM00n21/main/assets/header.svg?v=1eabab3d96" width="100%" alt="Viktor Reznov — Software Engineer"/>
 </p>
 
 <p align="center">
-  <img src="./assets/terminal.svg?v=88af2020af" width="100%" alt="Profile summary"/>
+  <img src="https://raw.githubusercontent.com/theM00n21/theM00n21/main/assets/terminal.svg?v=6d3d8d65da" width="100%" alt="Profile summary"/>
 </p>
 
 <p align="center">
-  <img src="./assets/languages.svg?v=d7c27c212f" width="49%" alt="Languages across all repositories"/>
-  <img src="./assets/activity.svg?v=c79bcfe886" width="49%" alt="Contribution activity"/>
+  <img src="https://raw.githubusercontent.com/theM00n21/theM00n21/main/assets/languages.svg?v=473f94e950" width="49%" alt="Languages across all repositories"/>
+  <img src="https://raw.githubusercontent.com/theM00n21/theM00n21/main/assets/activity.svg?v=d4421252c3" width="49%" alt="Contribution activity"/>
 </p>
 
 <p align="center">
-  <img src="./assets/stack.svg?v=a6a3691e69" width="100%" alt="Tech stack"/>
+  <img src="https://raw.githubusercontent.com/theM00n21/theM00n21/main/assets/stack.svg?v=a6a3691e69" width="100%" alt="Tech stack"/>
 </p>
 
