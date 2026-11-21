@@ -8,7 +8,7 @@
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/theM00n21/theM00n21/main/assets/languages.svg?v=75a8fbe297" width="49%" alt="Languages across all repositories"/>
-  <img src="https://raw.githubusercontent.com/theM00n21/theM00n21/main/assets/activity.svg?v=771150f54b" width="49%" alt="Contribution activity"/>
+  <img src="https://raw.githubusercontent.com/theM00n21/theM00n21/main/assets/activity.svg?v=69997c8665" width="49%" alt="Contribution activity"/>
 </p>
 
 <p align="center">
