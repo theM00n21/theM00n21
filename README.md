@@ -1,14 +1,14 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/theM00n21/theM00n21/main/assets/header.svg?v=197c1c2244" width="100%" alt="Viktor Reznov — Software Engineer"/>
+  <img src="https://raw.githubusercontent.com/theM00n21/theM00n21/main/assets/header.svg?v=0cd0a0be9e" width="100%" alt="Viktor Reznov — Software Engineer"/>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/theM00n21/theM00n21/main/assets/terminal.svg?v=3c96a73ef3" width="100%" alt="Profile summary"/>
+  <img src="https://raw.githubusercontent.com/theM00n21/theM00n21/main/assets/terminal.svg?v=01a4698b3e" width="100%" alt="Profile summary"/>
 </p>
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/theM00n21/theM00n21/main/assets/languages.svg?v=75a8fbe297" width="49%" alt="Languages across all repositories"/>
-  <img src="https://raw.githubusercontent.com/theM00n21/theM00n21/main/assets/activity.svg?v=563d096931" width="49%" alt="Contribution activity"/>
+  <img src="https://raw.githubusercontent.com/theM00n21/theM00n21/main/assets/activity.svg?v=76119ebc18" width="49%" alt="Contribution activity"/>
 </p>
 
 <p align="center">
